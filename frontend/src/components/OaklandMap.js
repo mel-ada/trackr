@@ -37,7 +37,7 @@ export default class OaklandMap extends Component {
     .then( response => response.json() )
     .then( results => {
       this.setState({
-        OaklandCrimeData: results
+        OaklandCrimeData: results.features
       })
     })
   }
