@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Map, Marker, InfoWindow } from 'google-maps-react'
+import { Map, Marker} from 'google-maps-react'
 import DataParser from './scripts/data'
 
 export default class OaklandMap extends Component {
@@ -14,8 +14,12 @@ export default class OaklandMap extends Component {
   }
 
   componentWillMount() {
-    this.getOaklandSchoolsData()
+    // Promise.all(
+    //   [
     this.getOaklandCrimeData()
+    this.getOaklandSchoolsData()
+    //   ]
+    // )
   }
 
   getOaklandSchoolsData() {
@@ -47,7 +51,7 @@ export default class OaklandMap extends Component {
   }
 
   render () {
-    // console.log('hi :')
+    console.log(this.state)
 
     return (
       <div>
@@ -57,19 +61,15 @@ export default class OaklandMap extends Component {
           name={'Current location'}
           position={{lat: 39.8044, lng: -125.2711}}
         />
-        <Marker
+        {this.state.OaklandCrimeCoordinates.map((latLng, index) => {
+          console.log('latlong', latLng)
+          return <Marker
           onClick={this.onMarkerClick}
           name={'Current location'}
-          position={{lat: 34.8044, lng: -190.2711}}
-        />
-
-          <InfoWindow onClose={this.onInfoWindowClose}>
-            {/* <div>
-              <h1>{this.state.selectedPlace.name}</h1>
-            </div> */}
-          </InfoWindow>
+          position={latLng}
+          key={index}
+        />})}
         </Map>
-        <Marker mapCenter={{lat: 39.8044, lng: -125.2711}} />
       </div>
     )
   }

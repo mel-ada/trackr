@@ -3,8 +3,8 @@ const DataParser = {
     let coordinateSet = []
     for( let crime of apiData ) {
       let lng = crime.geometry.coordinates[0]
-      let ltd = crime.geometry.coordinates[1]
-      coordinateSet.push( {ltd, lng} )
+      let lat = crime.geometry.coordinates[1]
+    coordinateSet.push( {lat, lng} )
     }
     return coordinateSet
   }
