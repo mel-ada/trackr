@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Navbar from './components/Navbar'
-import OaklandMap from './components/OaklandMap'
-class App extends Component {
+import Navbar from './Navbar'
+import OaklandMap from './OaklandMap'
+export default class App extends Component {
   render() {
     return (
       <div className="App">
@@ -11,5 +11,3 @@ class App extends Component {
     )
   }
 }
-
-export default App
