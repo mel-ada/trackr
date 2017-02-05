@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Map, Marker} from 'google-maps-react'
 import DataParser from './scripts/data'
-
 export default class OaklandMap extends Component {
 
   constructor( props ) {
@@ -10,6 +9,7 @@ export default class OaklandMap extends Component {
       OaklandSchoolsData: [],
       OaklandCrimeData: [],
       OaklandCrimeCoordinates: [],
+      OaklandSchoolCoordinates: [],
     }
   }
 
@@ -30,7 +30,8 @@ export default class OaklandMap extends Component {
     .then( response => response.json() )
     .then( results => {
       this.setState({
-        OaklandSchoolsData: results
+        OaklandSchoolsData: results,
+        OaklandSchoolCoordinates: DataParser.parseSchoolData( results )
       })
     })
   }
@@ -50,19 +51,27 @@ export default class OaklandMap extends Component {
     })
   }
 
-  render () {
-    console.log(this.state)
+  toggleData() {
 
+  }
+
+  render () {
     return (
       <div>
-      <Map google={window.google} zoom={10} initialCenter={{lat: 37.8044, lng: -122.2711}}>
+      <Map google={window.google} zoom={13} initialCenter={{lat: 37.8044, lng: -122.2711}}>
         <Marker
           onClick={this.onMarkerClick}
           name={'Current location'}
           position={{lat: 39.8044, lng: -125.2711}}
         />
         {this.state.OaklandCrimeCoordinates.map((latLng, index) => {
-          console.log('latlong', latLng)
+          return <Marker
+          onClick={this.onMarkerClick}
+          name={'Current location'}
+          position={latLng}
+          key={index}
+        />})}
+        {this.state.OaklandSchoolCoordinates.map((latLng, index) => {
           return <Marker
           onClick={this.onMarkerClick}
           name={'Current location'}
