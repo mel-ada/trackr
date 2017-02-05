@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Map, Marker, InfoWindow } from 'google-maps-react'
+import { Map, Marker} from 'google-maps-react'
 import DataParser from './scripts/data'
-
 export default class OaklandMap extends Component {
 
   constructor( props ) {
@@ -10,12 +9,17 @@ export default class OaklandMap extends Component {
       OaklandSchoolsData: [],
       OaklandCrimeData: [],
       OaklandCrimeCoordinates: [],
+      OaklandSchoolCoordinates: [],
     }
   }
 
   componentWillMount() {
-    this.getOaklandSchoolsData()
+    // Promise.all(
+    //   [
     this.getOaklandCrimeData()
+    this.getOaklandSchoolsData()
+    //   ]
+    // )
   }
 
   getOaklandSchoolsData() {
@@ -26,7 +30,8 @@ export default class OaklandMap extends Component {
     .then( response => response.json() )
     .then( results => {
       this.setState({
-        OaklandSchoolsData: results
+        OaklandSchoolsData: results,
+        OaklandSchoolCoordinates: DataParser.parseSchoolData( results )
       })
     })
   }
@@ -46,30 +51,34 @@ export default class OaklandMap extends Component {
     })
   }
 
-  render () {
-    // console.log('hi :')
+  toggleData() {
 
+  }
+
+  render () {
     return (
       <div>
-      <Map google={window.google} zoom={10} initialCenter={{lat: 37.8044, lng: -122.2711}}>
+      <Map google={window.google} zoom={13} initialCenter={{lat: 37.8044, lng: -122.2711}}>
         <Marker
           onClick={this.onMarkerClick}
           name={'Current location'}
           position={{lat: 39.8044, lng: -125.2711}}
         />
-        <Marker
+        {this.state.OaklandCrimeCoordinates.map((latLng, index) => {
+          return <Marker
           onClick={this.onMarkerClick}
           name={'Current location'}
-          position={{lat: 34.8044, lng: -190.2711}}
-        />
-
-          <InfoWindow onClose={this.onInfoWindowClose}>
-            {/* <div>
-              <h1>{this.state.selectedPlace.name}</h1>
-            </div> */}
-          </InfoWindow>
+          position={latLng}
+          key={index}
+        />})}
+        {this.state.OaklandSchoolCoordinates.map((latLng, index) => {
+          return <Marker
+          onClick={this.onMarkerClick}
+          name={'Current location'}
+          position={latLng}
+          key={index}
+        />})}
         </Map>
-        <Marker mapCenter={{lat: 39.8044, lng: -125.2711}} />
       </div>
     )
   }
