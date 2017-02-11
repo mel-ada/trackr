@@ -1,0 +1,24 @@
+DROP TABLE IF EXISTS crimes;
+CREATE TABLE crimes (
+  id SERIAL PRIMARY KEY,
+  lat FLOAT NOT NULL,
+  long FLOAT NOT NULL,
+  crime_type VARCHAR(256) NOT NULL,
+  date_time TIMESTAMP NOT NULL,
+  description TEXT NOT NULL,
+  case_number VARCHAR(256),
+  address VARCHAR(512) NOT NULL,
+  zip_code VARCHAR(25),
+  beat VARCHAR(10)
+);
+
+DROP TABLE IF EXISTS schools;
+CREATE TABLE schools (
+  id SERIAL PRIMARY KEY,
+  lat FLOAT NOT NULL,
+  long FLOAT NOT NULL,
+  address VARCHAR(512) NOT NULL,
+  school VARCHAR(512) NOT NULL,
+  phone VARCHAR(50) NOT NULL,
+  type VARCHAR(50) NOT NULL
+);
