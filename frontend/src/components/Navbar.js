@@ -24,6 +24,7 @@ export default class Navbar extends Component {
          <li><a onClick={(event) => this.onToggleMapView(event)} className="waves-effect" href="#!" id="both">Both</a></li>
          <li><a onClick={(event) => this.onToggleMapView(event)} className="waves-effect" href="#!" id="schools">Schools</a></li>
          <li><a onClick={(event) => this.onToggleMapView(event)} className="waves-effect" href="#!" id="crime">Crime</a></li>
+         <div className="g-signin2" data-onsuccess="onSignIn"></div>
        </ul>
      </div>
     )
