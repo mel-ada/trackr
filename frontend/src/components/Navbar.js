@@ -13,6 +13,13 @@ export default class Navbar extends Component {
     this.props.onclick( event.target.id )
   }
 
+  signOut() {
+    const auth2 = gapi.auth2.getAuthInstance()
+    auth2.signOut().then(function () {
+      console.log( 'User signed out.' )
+    })
+  }
+
   render() {
     return(
       <div>
@@ -24,6 +31,7 @@ export default class Navbar extends Component {
          <li><a onClick={(event) => this.onToggleMapView(event)} className="waves-effect" href="#!" id="both">Both</a></li>
          <li><a onClick={(event) => this.onToggleMapView(event)} className="waves-effect" href="#!" id="schools">Schools</a></li>
          <li><a onClick={(event) => this.onToggleMapView(event)} className="waves-effect" href="#!" id="crime">Crime</a></li>
+         <li><button onClick={(event) => this.signOut()}>Sign Out</button></li>
          <div className="g-signin2" data-onsuccess="onSignIn"></div>
        </ul>
      </div>
