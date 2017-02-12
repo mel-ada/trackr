@@ -3,7 +3,6 @@ import Navbar from './Navbar'
 import OaklandMap from './OaklandMap'
 
 export default class App extends Component {
-
   constructor( props ) {
     super( props )
 
