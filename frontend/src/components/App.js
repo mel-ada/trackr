@@ -22,7 +22,7 @@ export default class App extends Component {
 
     return (
       <div className="App">
-        <Navbar onclick={this.toggleMap} />
+        <Navbar jQuery={this.props.jQuery} />
         <OaklandMap mapView={this.state.toggleData} />
       </div>
     )

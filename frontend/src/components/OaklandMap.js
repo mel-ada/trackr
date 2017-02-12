@@ -81,8 +81,6 @@ export default class OaklandMap extends Component {
   }
 
   render () {
-    console.log( 'rendering' )
-
     return (
       <div>{this.googleMap()}</div>
     )
