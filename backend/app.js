@@ -34,8 +34,12 @@ app.get( '/crimes', (request, response) => {
 app.post( '/crimes', (request, response) => {
   Crime.create( request.body )
     .then( result => publish( result[ 0 ], 'crimes' ) )
-    .then( _ => response.status( 204 ).json({}))
-    .catch( error => response.status( 422 ).json( error ))
+    .then( _ => response.status( 201 ).json({}))
+    .catch( error => {
+      console.log( error )
+
+      response.status( 422 ).json( error )
+    })
 })
 
 app.get( '/schools', (request, response) => {

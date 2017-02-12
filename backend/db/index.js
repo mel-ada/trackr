@@ -6,9 +6,9 @@ const allCrimes = () =>
 
 const CREATE_CRIME_SQL = `
   INSERT INTO crimes (
-    lat, long, crime_type, date_time, description, case_number, address, zip_code, beat
+    lat, long, crime_type, date_time, description, address, zip_code
   ) VALUES (
-    \${lat}, \${long}, \${crime_type}, \${date_time}, \${description}, \${case_number}, \${address}, \${zip_code}, \${beat}
+    \${lat}, \${long}, \${crime_type}, now(), \${description}, \${address}, \${zip_code}
   ) RETURNING *
 `
 

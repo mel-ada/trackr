@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+.close-button {
+  color: blue;
+}
+
 header, main, footer {
      padding-left: 300px;
    }
@@ -13,4 +17,3 @@ header, main, footer {
        padding-left: 0;
      }
    }
-       
