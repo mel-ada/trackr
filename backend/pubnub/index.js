@@ -7,7 +7,7 @@ const CONFIG = {
 
 const pubnub = new PubNub( CONFIG )
 
-const publish = ( message, channel='test' ) =>
+const publish = ( message, channel='crimes' ) =>
   pubnub.publish({ channel, message })
 
 module.exports = publish
