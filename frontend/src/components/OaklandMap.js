@@ -19,7 +19,9 @@ export default class OaklandMap extends Component {
 
   messageHandler( message ) {
     if( message.channel === CRIME_CHANNEL ) {
-      this.setState({ crimes: [ ...this.state.crimes, message.message ] })
+      const crime = Object.assign( {}, message.message, { new_crime: true })
+
+      this.setState({ crimes: [ ...this.state.crimes, crime ] })
 
       console.log( message.message )
     }
@@ -54,14 +56,28 @@ export default class OaklandMap extends Component {
 }
 
 class CrimeMarker extends Component {
+  constructor( props ) {
+    super( props )
+
+    this.state = { new_crime: props.new_crime }
+  }
+
   crimeType() {
     return this.props.crime_type.toLowerCase().replace( ' ', '-' )
+  }
+
+  componentDidMount() {
+    if( this.state.new_crime === true ) {
+      setTimeout( () => {
+        this.setState({ new_crime: false })
+      }, 10000 )
+    }
   }
 
   render() {
     return (
       <div className='crime-marker marker-container'>
-        <div className='marker'>
+        <div className={`marker ${this.state.new_crime ? 'highlight' : ''}`}>
           <div className={`crime-type  ${this.crimeType()}`}></div>
         </div>
         <div className='description'>

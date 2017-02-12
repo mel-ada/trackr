@@ -27,6 +27,13 @@ header, main, footer {
   border: 3px solid;
 }
 
+.marker.highlight {
+  border: 12px solid;
+  height: 42px;
+  width: 42px;
+  border-radius: 21px;
+}
+
 .crime-marker .marker {
   border-color: #8b0000;
 }
