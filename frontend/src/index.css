@@ -9,11 +9,87 @@ body {
 }
 
 header, main, footer {
-     padding-left: 300px;
-   }
+  padding-left: 300px;
+}
 
-   @media only screen and (max-width : 992px) {
-     header, main, footer {
-       padding-left: 0;
-     }
-   }
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+.marker {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #fff;
+  border: 3px solid;
+}
+
+.marker.highlight {
+  border: 12px solid;
+  height: 42px;
+  width: 42px;
+  border-radius: 21px;
+}
+
+.crime-marker .marker {
+  border-color: #8b0000;
+}
+
+.school-marker .marker {
+  border-color: #006400;
+}
+
+.crime-type {
+  border: 3px solid #369;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.vandalism, .disturbing-the-peace {
+  border-color: #ffc857;
+  color: #ffc857;
+}
+
+.prostitution, .murder {
+  border-color: #c5283d;
+  color: #c5283d;
+}
+
+.aggravated-assault, .simple-assault {
+  border-color: #e9724c;
+  color: #e9724c;
+}
+
+.robbery, .burglary, .theft, .vehicle-theft {
+  border-color: #481d24;
+  color: #481d24;
+}
+
+.narcotics, .murder {
+  border-color: #255f85;
+  color: #255f85;
+}
+
+.marker-container .description {
+  display: none;
+  position: relative;
+  top: -75px;
+  height: 60px;
+  width: 150px;
+  background-color: #fff;
+  z-index: 10000;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+
+.marker-container:hover .description {
+  display: block;
+}
+
+.description .type {
+  font-weight: bold;
+}

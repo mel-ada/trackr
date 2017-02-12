@@ -14,7 +14,7 @@ export default class NavForm extends Component {
     } else {
       return (
         <div>
-          <a class="btn waves-effect waves-teal" onClick={this.props.closeForm}>Close Form</a>
+          <a className="btn waves-effect waves-teal" onClick={this.props.closeForm}>Close Form</a>
           {this.selectForm()}
         </div>
       )
